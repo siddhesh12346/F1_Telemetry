@@ -1,0 +1,18 @@
+[
+  "speed",
+  "throttle",
+  "brake",
+  "steer",
+  "gear",
+  "engineRPM",
+  "drs",
+  "gForceLateral",
+  "gForceLongitudinal",
+  "gForceVertical",
+  "lapDistance",
+  "sector",
+  "acceleration_kmh_s",
+  "throttle_rate_s",
+  "brake_rate_s",
+  "steer_rate_s"
+]

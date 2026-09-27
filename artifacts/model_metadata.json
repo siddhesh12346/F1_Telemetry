@@ -1,0 +1,56 @@
+{
+  "train_circuits": [
+    "Mexico",
+    "Monza",
+    "Sakhir"
+  ],
+  "target": "documented code 7 in next 1..19 frames",
+  "horizon_frames": 19,
+  "negative_sampling_ratio": 10,
+  "sessions": [
+    {
+      "session_id": "10230136787177318441",
+      "circuit": "Mexico",
+      "eligible_rows": 1180561,
+      "positive_rows": 749,
+      "sampled_negative_rows": 20000
+    },
+    {
+      "session_id": "1087987310493855854",
+      "circuit": "Monza",
+      "eligible_rows": 928085,
+      "positive_rows": 5275,
+      "sampled_negative_rows": 52750
+    },
+    {
+      "session_id": "3335673977098133433",
+      "circuit": "Sakhir",
+      "eligible_rows": 1095094,
+      "positive_rows": 58,
+      "sampled_negative_rows": 20000
+    }
+  ],
+  "model": "RandomForestClassifier",
+  "selection": "Phase 2 best PR-AUC (0.171); XGBoost retained highest ROC-AUC (0.685)",
+  "features": [
+    "speed",
+    "throttle",
+    "brake",
+    "steer",
+    "gear",
+    "engineRPM",
+    "drs",
+    "gForceLateral",
+    "gForceLongitudinal",
+    "gForceVertical",
+    "lapDistance",
+    "sector",
+    "acceleration_kmh_s",
+    "throttle_rate_s",
+    "brake_rate_s",
+    "steer_rate_s"
+  ],
+  "training_rows": 98832,
+  "seconds": 5.6985843000002205,
+  "random_state": 42
+}

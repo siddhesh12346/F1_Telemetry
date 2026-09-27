@@ -1,0 +1,251 @@
+{
+  "split": {
+    "train_circuits": [
+      "Mexico",
+      "Monza",
+      "Sakhir"
+    ],
+    "test_circuit": "Spa",
+    "train_laps": 1727,
+    "test_laps": 421,
+    "classes": 20
+  },
+  "metrics": {
+    "accuracy": 0.12114014251781473,
+    "balanced_accuracy": 0.12396245059288538,
+    "macro_f1": 0.08082550075008213
+  },
+  "feature_importance": {
+    "mean_throttle": 0.13458304547249042,
+    "mean_speed": 0.13103017665498362,
+    "mean_abs_steer": 0.12164664359406316,
+    "mean_rpm": 0.12103322975622978,
+    "max_speed": 0.11784133155384464,
+    "mean_lateral_g": 0.10190310183213762,
+    "brake_frame_fraction": 0.09748402366147581,
+    "mean_brake": 0.09712726228313974,
+    "mean_longitudinal_g": 0.07735118519163516
+  },
+  "driver_mean_metrics": {
+    "Alexander Albon": {
+      "mean_speed": 204.574,
+      "max_speed": 315.011,
+      "mean_throttle": 0.661,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.146,
+      "mean_abs_steer": 0.117,
+      "mean_rpm": 10377.306,
+      "mean_lateral_g": -0.229,
+      "mean_longitudinal_g": 0.007
+    },
+    "Antonio Giovinazzi": {
+      "mean_speed": 207.128,
+      "max_speed": 322.252,
+      "mean_throttle": 0.653,
+      "mean_brake": 0.085,
+      "brake_frame_fraction": 0.142,
+      "mean_abs_steer": 0.112,
+      "mean_rpm": 10420.07,
+      "mean_lateral_g": -0.26,
+      "mean_longitudinal_g": 0.013
+    },
+    "Carlos Sainz": {
+      "mean_speed": 211.72,
+      "max_speed": 320.412,
+      "mean_throttle": 0.676,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.14,
+      "mean_abs_steer": 0.11,
+      "mean_rpm": 10518.14,
+      "mean_lateral_g": -0.266,
+      "mean_longitudinal_g": 0.012
+    },
+    "Charles Leclerc": {
+      "mean_speed": 213.004,
+      "max_speed": 317.842,
+      "mean_throttle": 0.68,
+      "mean_brake": 0.084,
+      "brake_frame_fraction": 0.145,
+      "mean_abs_steer": 0.114,
+      "mean_rpm": 10494.47,
+      "mean_lateral_g": -0.268,
+      "mean_longitudinal_g": 0.009
+    },
+    "Daniel Ricciardo": {
+      "mean_speed": 210.342,
+      "max_speed": 322.336,
+      "mean_throttle": 0.668,
+      "mean_brake": 0.085,
+      "brake_frame_fraction": 0.141,
+      "mean_abs_steer": 0.11,
+      "mean_rpm": 10428.729,
+      "mean_lateral_g": -0.26,
+      "mean_longitudinal_g": 0.009
+    },
+    "Daniil Kvyat": {
+      "mean_speed": 208.422,
+      "max_speed": 318.593,
+      "mean_throttle": 0.663,
+      "mean_brake": 0.084,
+      "brake_frame_fraction": 0.141,
+      "mean_abs_steer": 0.112,
+      "mean_rpm": 10479.363,
+      "mean_lateral_g": -0.266,
+      "mean_longitudinal_g": 0.011
+    },
+    "Esteban Ocon": {
+      "mean_speed": 211.064,
+      "max_speed": 321.518,
+      "mean_throttle": 0.672,
+      "mean_brake": 0.084,
+      "brake_frame_fraction": 0.142,
+      "mean_abs_steer": 0.111,
+      "mean_rpm": 10490.085,
+      "mean_lateral_g": -0.282,
+      "mean_longitudinal_g": 0.012
+    },
+    "George Russell": {
+      "mean_speed": 198.172,
+      "max_speed": 313.402,
+      "mean_throttle": 0.637,
+      "mean_brake": 0.084,
+      "brake_frame_fraction": 0.143,
+      "mean_abs_steer": 0.111,
+      "mean_rpm": 10218.519,
+      "mean_lateral_g": -0.264,
+      "mean_longitudinal_g": 0.009
+    },
+    "Kevin Magnussen": {
+      "mean_speed": 206.933,
+      "max_speed": 314.009,
+      "mean_throttle": 0.666,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.146,
+      "mean_abs_steer": 0.115,
+      "mean_rpm": 10452.596,
+      "mean_lateral_g": -0.263,
+      "mean_longitudinal_g": 0.011
+    },
+    "Kimi R\u00e4ikk\u00f6nen": {
+      "mean_speed": 210.147,
+      "max_speed": 320.614,
+      "mean_throttle": 0.661,
+      "mean_brake": 0.086,
+      "brake_frame_fraction": 0.139,
+      "mean_abs_steer": 0.107,
+      "mean_rpm": 10387.967,
+      "mean_lateral_g": -0.266,
+      "mean_longitudinal_g": 0.009
+    },
+    "Lance Stroll": {
+      "mean_speed": 211.391,
+      "max_speed": 323.351,
+      "mean_throttle": 0.666,
+      "mean_brake": 0.084,
+      "brake_frame_fraction": 0.14,
+      "mean_abs_steer": 0.11,
+      "mean_rpm": 10512.164,
+      "mean_lateral_g": -0.271,
+      "mean_longitudinal_g": 0.01
+    },
+    "Lando Norris": {
+      "mean_speed": 211.295,
+      "max_speed": 320.07,
+      "mean_throttle": 0.675,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.142,
+      "mean_abs_steer": 0.111,
+      "mean_rpm": 10509.835,
+      "mean_lateral_g": -0.268,
+      "mean_longitudinal_g": 0.009
+    },
+    "Lewis Hamilton": {
+      "mean_speed": 213.934,
+      "max_speed": 316.807,
+      "mean_throttle": 0.685,
+      "mean_brake": 0.084,
+      "brake_frame_fraction": 0.145,
+      "mean_abs_steer": 0.114,
+      "mean_rpm": 10501.084,
+      "mean_lateral_g": -0.278,
+      "mean_longitudinal_g": 0.006
+    },
+    "Max Verstappen": {
+      "mean_speed": 218.335,
+      "max_speed": 313.854,
+      "mean_throttle": 0.709,
+      "mean_brake": 0.08,
+      "brake_frame_fraction": 0.137,
+      "mean_abs_steer": 0.101,
+      "mean_rpm": 10469.033,
+      "mean_lateral_g": -0.278,
+      "mean_longitudinal_g": 0.009
+    },
+    "Nicholas Latifi": {
+      "mean_speed": 205.972,
+      "max_speed": 311.429,
+      "mean_throttle": 0.662,
+      "mean_brake": 0.082,
+      "brake_frame_fraction": 0.148,
+      "mean_abs_steer": 0.11,
+      "mean_rpm": 10465.407,
+      "mean_lateral_g": -0.255,
+      "mean_longitudinal_g": 0.01
+    },
+    "Pierre Gasly": {
+      "mean_speed": 209.256,
+      "max_speed": 319.15,
+      "mean_throttle": 0.669,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.142,
+      "mean_abs_steer": 0.112,
+      "mean_rpm": 10485.734,
+      "mean_lateral_g": -0.264,
+      "mean_longitudinal_g": 0.014
+    },
+    "Romain Grosjean": {
+      "mean_speed": 206.538,
+      "max_speed": 313.518,
+      "mean_throttle": 0.665,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.145,
+      "mean_abs_steer": 0.114,
+      "mean_rpm": 10451.133,
+      "mean_lateral_g": -0.258,
+      "mean_longitudinal_g": 0.011
+    },
+    "Sebastian Vettel": {
+      "mean_speed": 203.199,
+      "max_speed": 319.077,
+      "mean_throttle": 0.648,
+      "mean_brake": 0.086,
+      "brake_frame_fraction": 0.149,
+      "mean_abs_steer": 0.123,
+      "mean_rpm": 10376.044,
+      "mean_lateral_g": -0.22,
+      "mean_longitudinal_g": 0.008
+    },
+    "Sergio Perez": {
+      "mean_speed": 210.962,
+      "max_speed": 320.158,
+      "mean_throttle": 0.669,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.143,
+      "mean_abs_steer": 0.111,
+      "mean_rpm": 10521.459,
+      "mean_lateral_g": -0.272,
+      "mean_longitudinal_g": 0.011
+    },
+    "Valtteri Bottas": {
+      "mean_speed": 215.548,
+      "max_speed": 319.664,
+      "mean_throttle": 0.685,
+      "mean_brake": 0.083,
+      "brake_frame_fraction": 0.119,
+      "mean_abs_steer": 0.12,
+      "mean_rpm": 10070.346,
+      "mean_lateral_g": -0.276,
+      "mean_longitudinal_g": 0.016
+    }
+  }
+}

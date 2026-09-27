@@ -1,0 +1,135 @@
+{
+  "pilot": {
+    "circuits": [
+      "Mexico",
+      "Monza",
+      "Sakhir",
+      "Spa"
+    ],
+    "sessions": 4,
+    "rows": 4175074,
+    "positive_warning_frames": 8985,
+    "laps": 2148,
+    "drivers": 20,
+    "model_sample_rows": 130765
+  },
+  "surface_departure_classification": {
+    "split": {
+      "train_circuits": [
+        "Mexico",
+        "Monza",
+        "Sakhir"
+      ],
+      "test_circuit": "Spa",
+      "train_rows": 98832,
+      "test_rows": 31933,
+      "test_positive_frames": 2903
+    },
+    "results": {
+      "logistic_regression": {
+        "precision": 0.16389548693586697,
+        "recall": 0.3802962452635205,
+        "f1": 0.22906940553999378,
+        "roc_auc": 0.657573757248521,
+        "pr_auc": 0.14821175327466357,
+        "confusion_matrix": [
+          [
+            23398,
+            5632
+          ],
+          [
+            1799,
+            1104
+          ]
+        ]
+      },
+      "random_forest": {
+        "precision": 0.25,
+        "recall": 0.007233895969686531,
+        "f1": 0.014060930699698694,
+        "roc_auc": 0.6776856445438926,
+        "pr_auc": 0.17106040081297702,
+        "confusion_matrix": [
+          [
+            28967,
+            63
+          ],
+          [
+            2882,
+            21
+          ]
+        ]
+      },
+      "xgboost": {
+        "precision": 0.2033898305084746,
+        "recall": 0.012400964519462624,
+        "f1": 0.023376623376623377,
+        "roc_auc": 0.6851718303929476,
+        "pr_auc": 0.1629792562722003,
+        "confusion_matrix": [
+          [
+            28889,
+            141
+          ],
+          [
+            2867,
+            36
+          ]
+        ]
+      }
+    },
+    "random_forest_feature_importance": {
+      "gForceLateral": 0.2304544008208881,
+      "lapDistance": 0.19775785054122183,
+      "steer": 0.14824703691960994,
+      "speed": 0.0977876458466917,
+      "sector": 0.06660941361282065,
+      "gear": 0.057464601589989714,
+      "gForceLongitudinal": 0.05533941564358186,
+      "engineRPM": 0.04332404872691589,
+      "throttle": 0.025092449711395542,
+      "acceleration_kmh_s": 0.018974735874896412,
+      "steer_rate_s": 0.018274119981434838,
+      "gForceVertical": 0.014399698381618968,
+      "throttle_rate_s": 0.010360859474994133,
+      "brake": 0.008702757385525627,
+      "brake_rate_s": 0.006703862460908667,
+      "drs": 0.0005071030275062231
+    }
+  },
+  "lap_time_prediction": {
+    "scenario": "predict final lap time after Sector 1",
+    "clean_laps": 2111,
+    "train_laps": 1697,
+    "test_laps": 414,
+    "results": {
+      "ridge": {
+        "mae_seconds": 15.431121332557082,
+        "rmse_seconds": 15.787874154581575,
+        "r2": -2.9839928088658056
+      },
+      "random_forest": {
+        "mae_seconds": 14.814789902185963,
+        "rmse_seconds": 15.261901303206901,
+        "r2": -2.7229612446099445
+      }
+    }
+  },
+  "anomaly_detection_against_next_1s_surface_target": {
+    "precision": 0.14061433447098975,
+    "recall": 0.1419221495005167,
+    "f1": 0.14126521515515172,
+    "roc_auc": 0.531689888315614,
+    "pr_auc": 0.13049843699116764,
+    "confusion_matrix": [
+      [
+        26512,
+        2518
+      ],
+      [
+        2491,
+        412
+      ]
+    ]
+  }
+}

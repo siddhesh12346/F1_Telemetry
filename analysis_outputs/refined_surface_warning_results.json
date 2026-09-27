@@ -1,0 +1,890 @@
+{
+  "study": "Refined Surface-Departure Warning ML Experiment",
+  "dataset_summary": [
+    {
+      "session_id": "10230136787177318441",
+      "circuit": "Mexico",
+      "total_rows": 1180640,
+      "natural_warning_positives": 789,
+      "effective_hz": 19.14,
+      "median_dt_ms": 52.24,
+      "on_track_rows": 1180561,
+      "sampled_rows": 20749,
+      "sampled_positives": 749,
+      "sampled_negatives": 20000,
+      "sampled_prevalence": 0.0361
+    },
+    {
+      "session_id": "1087987310493855854",
+      "circuit": "Monza",
+      "total_rows": 930040,
+      "natural_warning_positives": 6955,
+      "effective_hz": 18.96,
+      "median_dt_ms": 52.73,
+      "on_track_rows": 928085,
+      "sampled_rows": 58025,
+      "sampled_positives": 5275,
+      "sampled_negatives": 52750,
+      "sampled_prevalence": 0.0909
+    },
+    {
+      "session_id": "3335673977098133433",
+      "circuit": "Sakhir",
+      "total_rows": 1095100,
+      "natural_warning_positives": 61,
+      "effective_hz": 19.23,
+      "median_dt_ms": 52.0,
+      "on_track_rows": 1095094,
+      "sampled_rows": 20058,
+      "sampled_positives": 58,
+      "sampled_negatives": 20000,
+      "sampled_prevalence": 0.0029
+    },
+    {
+      "session_id": "4048657932346004126",
+      "circuit": "Spa",
+      "total_rows": 972420,
+      "natural_warning_positives": 3838,
+      "effective_hz": 19.01,
+      "median_dt_ms": 52.61,
+      "on_track_rows": 971334,
+      "sampled_rows": 31933,
+      "sampled_positives": 2903,
+      "sampled_negatives": 29030,
+      "sampled_prevalence": 0.0909
+    }
+  ],
+  "circuit_splits": {
+    "train_tuning": [
+      "Mexico",
+      "Monza"
+    ],
+    "val_tuning": "Sakhir",
+    "train_full": [
+      "Mexico",
+      "Monza",
+      "Sakhir"
+    ],
+    "test_held_out": "Spa",
+    "test_rows": 31933,
+    "test_positive_frames": 2903,
+    "spa_events": 276
+  },
+  "ablations": {
+    "exp_a": {
+      "name": "Exp A (Basic)",
+      "description": "Basic safe telemetry features with lapDistance (matching pilot)",
+      "features": [
+        "speed",
+        "throttle",
+        "brake",
+        "steer",
+        "gear",
+        "engineRPM",
+        "drs",
+        "gForceLateral",
+        "gForceLongitudinal",
+        "gForceVertical",
+        "sector",
+        "lapDistance",
+        "acceleration_kmh_s",
+        "throttle_rate_s",
+        "brake_rate_s",
+        "steer_rate_s"
+      ],
+      "models": {
+        "logistic_regression": {
+          "fit_duration_seconds": 0.35,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.16389548693586697,
+            "recall": 0.3802962452635205,
+            "f1": 0.22906940553999378,
+            "roc_auc": 0.657573757248521,
+            "pr_auc": 0.14821175327466357,
+            "confusion_matrix": {
+              "tn": 23398,
+              "fp": 5632,
+              "fn": 1799,
+              "tp": 1104
+            },
+            "positive_prediction_rate": 0.210941659098738,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.44,
+            "precision": 0.16268071882178084,
+            "recall": 0.41474336892869446,
+            "f1": 0.23369565217391305,
+            "roc_auc": 0.657573757248521,
+            "pr_auc": 0.14821175327466357,
+            "confusion_matrix": {
+              "tn": 22833,
+              "fp": 6197,
+              "fn": 1699,
+              "tp": 1204
+            },
+            "positive_prediction_rate": 0.23176651113268407,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 162,
+            "event_recall": 0.587,
+            "lead_time_seconds": {
+              "mean": 0.787,
+              "median": 0.864,
+              "p95": 0.944
+            },
+            "lead_time_frames": {
+              "mean": 16.9,
+              "median": 19.0
+            },
+            "false_warning_frames": 5632,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.194
+          },
+          "event_eval_tuned": {
+            "threshold": 0.44,
+            "total_events": 276,
+            "detected_events": 171,
+            "event_recall": 0.6196,
+            "lead_time_seconds": {
+              "mean": 0.794,
+              "median": 0.867,
+              "p95": 0.952
+            },
+            "lead_time_frames": {
+              "mean": 17.0,
+              "median": 19.0
+            },
+            "false_warning_frames": 6197,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.2135
+          },
+          "top_features": {}
+        },
+        "random_forest": {
+          "fit_duration_seconds": 6.13,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.11666666666666667,
+            "recall": 0.002411298656562177,
+            "f1": 0.004724940938238272,
+            "roc_auc": 0.6819816802530885,
+            "pr_auc": 0.1690242968389738,
+            "confusion_matrix": {
+              "tn": 28977,
+              "fp": 53,
+              "fn": 2896,
+              "tp": 7
+            },
+            "positive_prediction_rate": 0.0018789340181003978,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.1,
+            "precision": 0.17462277091906722,
+            "recall": 0.43851188425766446,
+            "f1": 0.24977926027666045,
+            "roc_auc": 0.6819816802530885,
+            "pr_auc": 0.1690242968389738,
+            "confusion_matrix": {
+              "tn": 23013,
+              "fp": 6017,
+              "fn": 1630,
+              "tp": 1273
+            },
+            "positive_prediction_rate": 0.2282904831991983,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 5,
+            "event_recall": 0.0181,
+            "lead_time_seconds": {
+              "mean": 0.398,
+              "median": 0.371,
+              "p95": 0.751
+            },
+            "lead_time_frames": {
+              "mean": 8.2,
+              "median": 7.0
+            },
+            "false_warning_frames": 53,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0018
+          },
+          "event_eval_tuned": {
+            "threshold": 0.1,
+            "total_events": 276,
+            "detected_events": 177,
+            "event_recall": 0.6413,
+            "lead_time_seconds": {
+              "mean": 0.812,
+              "median": 0.874,
+              "p95": 0.95
+            },
+            "lead_time_frames": {
+              "mean": 17.5,
+              "median": 19.0
+            },
+            "false_warning_frames": 6017,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.2073
+          },
+          "top_features": {
+            "gForceLateral": 0.22637576806438844,
+            "lapDistance": 0.2027013084964084,
+            "steer": 0.15008487160870687,
+            "speed": 0.10497642433494547,
+            "sector": 0.05975243541358652,
+            "gear": 0.059356782483431215,
+            "gForceLongitudinal": 0.05319917156703977,
+            "engineRPM": 0.04015211206327386,
+            "throttle": 0.025304929450188474,
+            "steer_rate_s": 0.018858322560599206
+          }
+        },
+        "xgboost": {
+          "fit_duration_seconds": 0.71,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.2631578947368421,
+            "recall": 0.027557698932139166,
+            "f1": 0.049890863735578425,
+            "roc_auc": 0.6729616777825783,
+            "pr_auc": 0.159616352124544,
+            "confusion_matrix": {
+              "tn": 28806,
+              "fp": 224,
+              "fn": 2823,
+              "tp": 80
+            },
+            "positive_prediction_rate": 0.009519932358375349,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.07,
+            "precision": 0.20599538816295157,
+            "recall": 0.1846365828453324,
+            "f1": 0.1947320617620345,
+            "roc_auc": 0.6729616777825783,
+            "pr_auc": 0.159616352124544,
+            "confusion_matrix": {
+              "tn": 26964,
+              "fp": 2066,
+              "fn": 2367,
+              "tp": 536
+            },
+            "positive_prediction_rate": 0.08148310525162059,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 40,
+            "event_recall": 0.1449,
+            "lead_time_seconds": {
+              "mean": 0.566,
+              "median": 0.632,
+              "p95": 0.937
+            },
+            "lead_time_frames": {
+              "mean": 12.3,
+              "median": 14.0
+            },
+            "false_warning_frames": 224,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0077
+          },
+          "event_eval_tuned": {
+            "threshold": 0.07,
+            "total_events": 276,
+            "detected_events": 116,
+            "event_recall": 0.4203,
+            "lead_time_seconds": {
+              "mean": 0.78,
+              "median": 0.836,
+              "p95": 0.943
+            },
+            "lead_time_frames": {
+              "mean": 16.8,
+              "median": 19.0
+            },
+            "false_warning_frames": 2066,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0712
+          },
+          "top_features": {
+            "gForceLateral": 0.30054110288619995,
+            "sector": 0.1364334523677826,
+            "lapDistance": 0.1147669181227684,
+            "gear": 0.07972287386655807,
+            "speed": 0.0703933835029602,
+            "gForceLongitudinal": 0.04235251620411873,
+            "steer": 0.03807433694601059,
+            "brake": 0.03630857542157173,
+            "engineRPM": 0.029300730675458908,
+            "brake_rate_s": 0.02876416966319084
+          }
+        }
+      }
+    },
+    "exp_b": {
+      "name": "Exp B (Rolling)",
+      "description": "Basic + causal rolling features with lapDistance",
+      "features": [
+        "speed",
+        "throttle",
+        "brake",
+        "steer",
+        "gear",
+        "engineRPM",
+        "drs",
+        "gForceLateral",
+        "gForceLongitudinal",
+        "gForceVertical",
+        "sector",
+        "lapDistance",
+        "acceleration_kmh_s",
+        "throttle_rate_s",
+        "brake_rate_s",
+        "steer_rate_s",
+        "speed_roll_mean_0_5s",
+        "speed_roll_mean_1s",
+        "speed_roll_std_1s",
+        "throttle_roll_mean_0_5s",
+        "throttle_roll_mean_1s",
+        "throttle_roll_std_1s",
+        "brake_roll_mean_0_5s",
+        "brake_roll_mean_1s",
+        "steer_roll_mean_0_5s",
+        "steer_roll_std_1s",
+        "gforce_lat_max_1s",
+        "brake_max_1s",
+        "throttle_change_0_5s",
+        "steer_change_0_5s",
+        "accel_change_0_5s"
+      ],
+      "models": {
+        "logistic_regression": {
+          "fit_duration_seconds": 0.75,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.1961519647806946,
+            "recall": 0.4143988976920427,
+            "f1": 0.26626826029216466,
+            "roc_auc": 0.6833085471465786,
+            "pr_auc": 0.16305578555057487,
+            "confusion_matrix": {
+              "tn": 24100,
+              "fp": 4930,
+              "fn": 1700,
+              "tp": 1203
+            },
+            "positive_prediction_rate": 0.19205837221682898,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.86,
+            "precision": 0.18793753365643512,
+            "recall": 0.12022046159145712,
+            "f1": 0.14663865546218488,
+            "roc_auc": 0.6833085471465786,
+            "pr_auc": 0.16305578555057487,
+            "confusion_matrix": {
+              "tn": 27522,
+              "fp": 1508,
+              "fn": 2554,
+              "tp": 349
+            },
+            "positive_prediction_rate": 0.05815300786020731,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 164,
+            "event_recall": 0.5942,
+            "lead_time_seconds": {
+              "mean": 0.792,
+              "median": 0.861,
+              "p95": 0.945
+            },
+            "lead_time_frames": {
+              "mean": 17.0,
+              "median": 19.0
+            },
+            "false_warning_frames": 4930,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.1698
+          },
+          "event_eval_tuned": {
+            "threshold": 0.86,
+            "total_events": 276,
+            "detected_events": 72,
+            "event_recall": 0.2609,
+            "lead_time_seconds": {
+              "mean": 0.755,
+              "median": 0.874,
+              "p95": 0.944
+            },
+            "lead_time_frames": {
+              "mean": 16.2,
+              "median": 19.0
+            },
+            "false_warning_frames": 1508,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0519
+          },
+          "top_features": {}
+        },
+        "random_forest": {
+          "fit_duration_seconds": 7.42,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.6829268292682927,
+            "recall": 0.019290389252497417,
+            "f1": 0.037520938023450585,
+            "roc_auc": 0.7040787625235705,
+            "pr_auc": 0.21309510641447116,
+            "confusion_matrix": {
+              "tn": 29004,
+              "fp": 26,
+              "fn": 2847,
+              "tp": 56
+            },
+            "positive_prediction_rate": 0.002567876491403877,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.23,
+            "precision": 0.25448671931083994,
+            "recall": 0.24423010678608337,
+            "f1": 0.24925294427843206,
+            "roc_auc": 0.7040787625235705,
+            "pr_auc": 0.21309510641447116,
+            "confusion_matrix": {
+              "tn": 26953,
+              "fp": 2077,
+              "fn": 2194,
+              "tp": 709
+            },
+            "positive_prediction_rate": 0.08724516957379513,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 20,
+            "event_recall": 0.0725,
+            "lead_time_seconds": {
+              "mean": 0.633,
+              "median": 0.783,
+              "p95": 0.937
+            },
+            "lead_time_frames": {
+              "mean": 14.0,
+              "median": 19.0
+            },
+            "false_warning_frames": 26,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0009
+          },
+          "event_eval_tuned": {
+            "threshold": 0.23,
+            "total_events": 276,
+            "detected_events": 108,
+            "event_recall": 0.3913,
+            "lead_time_seconds": {
+              "mean": 0.798,
+              "median": 0.875,
+              "p95": 0.943
+            },
+            "lead_time_frames": {
+              "mean": 17.2,
+              "median": 19.0
+            },
+            "false_warning_frames": 2077,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0715
+          },
+          "top_features": {
+            "steer_roll_mean_0_5s": 0.1297109267152715,
+            "lapDistance": 0.11164222416673111,
+            "gforce_lat_max_1s": 0.1022989883303157,
+            "gForceLateral": 0.09745822506732424,
+            "steer": 0.0832724235209076,
+            "speed_roll_mean_1s": 0.05133942564593088,
+            "speed": 0.04812040094969566,
+            "speed_roll_mean_0_5s": 0.04589607769083855,
+            "sector": 0.04365283319554543,
+            "steer_roll_std_1s": 0.04034635729833266
+          }
+        },
+        "xgboost": {
+          "fit_duration_seconds": 1.12,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.45738942826321466,
+            "recall": 0.14605580434033757,
+            "f1": 0.22140992167101828,
+            "roc_auc": 0.6901487515320546,
+            "pr_auc": 0.23391434871216962,
+            "confusion_matrix": {
+              "tn": 28527,
+              "fp": 503,
+              "fn": 2479,
+              "tp": 424
+            },
+            "positive_prediction_rate": 0.029029530579651144,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.02,
+            "precision": 0.2205781925791031,
+            "recall": 0.33379262831553563,
+            "f1": 0.265625,
+            "roc_auc": 0.6901487515320546,
+            "pr_auc": 0.23391434871216962,
+            "confusion_matrix": {
+              "tn": 25606,
+              "fp": 3424,
+              "fn": 1934,
+              "tp": 969
+            },
+            "positive_prediction_rate": 0.13756928569191745,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 80,
+            "event_recall": 0.2899,
+            "lead_time_seconds": {
+              "mean": 0.773,
+              "median": 0.871,
+              "p95": 0.943
+            },
+            "lead_time_frames": {
+              "mean": 16.8,
+              "median": 19.0
+            },
+            "false_warning_frames": 503,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0173
+          },
+          "event_eval_tuned": {
+            "threshold": 0.02,
+            "total_events": 276,
+            "detected_events": 152,
+            "event_recall": 0.5507,
+            "lead_time_seconds": {
+              "mean": 0.779,
+              "median": 0.874,
+              "p95": 0.943
+            },
+            "lead_time_frames": {
+              "mean": 16.7,
+              "median": 19.0
+            },
+            "false_warning_frames": 3424,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.1179
+          },
+          "top_features": {
+            "steer_roll_mean_0_5s": 0.1787199079990387,
+            "gForceLateral": 0.15605418384075165,
+            "sector": 0.09522195905447006,
+            "gear": 0.08386214077472687,
+            "lapDistance": 0.06663322448730469,
+            "speed_roll_mean_1s": 0.034565676003694534,
+            "speed_roll_mean_0_5s": 0.032110508531332016,
+            "brake": 0.030909813940525055,
+            "throttle_roll_mean_1s": 0.028446953743696213,
+            "gforce_lat_max_1s": 0.025178873911499977
+          }
+        }
+      }
+    },
+    "exp_c": {
+      "name": "Exp C (No LapDist)",
+      "description": "Basic + causal rolling features WITHOUT lapDistance",
+      "features": [
+        "speed",
+        "throttle",
+        "brake",
+        "steer",
+        "gear",
+        "engineRPM",
+        "drs",
+        "gForceLateral",
+        "gForceLongitudinal",
+        "gForceVertical",
+        "sector",
+        "acceleration_kmh_s",
+        "throttle_rate_s",
+        "brake_rate_s",
+        "steer_rate_s",
+        "speed_roll_mean_0_5s",
+        "speed_roll_mean_1s",
+        "speed_roll_std_1s",
+        "throttle_roll_mean_0_5s",
+        "throttle_roll_mean_1s",
+        "throttle_roll_std_1s",
+        "brake_roll_mean_0_5s",
+        "brake_roll_mean_1s",
+        "steer_roll_mean_0_5s",
+        "steer_roll_std_1s",
+        "gforce_lat_max_1s",
+        "brake_max_1s",
+        "throttle_change_0_5s",
+        "steer_change_0_5s",
+        "accel_change_0_5s"
+      ],
+      "models": {
+        "logistic_regression": {
+          "fit_duration_seconds": 0.75,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.17838613533502595,
+            "recall": 0.5566655184292112,
+            "f1": 0.2701889316167865,
+            "roc_auc": 0.7325388859138081,
+            "pr_auc": 0.19087313951141202,
+            "confusion_matrix": {
+              "tn": 21587,
+              "fp": 7443,
+              "fn": 1287,
+              "tp": 1616
+            },
+            "positive_prediction_rate": 0.28368772116619173,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.83,
+            "precision": 0.23734027449124467,
+            "recall": 0.3455046503616948,
+            "f1": 0.28138588862393044,
+            "roc_auc": 0.7325388859138081,
+            "pr_auc": 0.19087313951141202,
+            "confusion_matrix": {
+              "tn": 25807,
+              "fp": 3223,
+              "fn": 1900,
+              "tp": 1003
+            },
+            "positive_prediction_rate": 0.13233958600820467,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 198,
+            "event_recall": 0.7174,
+            "lead_time_seconds": {
+              "mean": 0.819,
+              "median": 0.876,
+              "p95": 0.952
+            },
+            "lead_time_frames": {
+              "mean": 17.6,
+              "median": 19.0
+            },
+            "false_warning_frames": 7443,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.2564
+          },
+          "event_eval_tuned": {
+            "threshold": 0.83,
+            "total_events": 276,
+            "detected_events": 142,
+            "event_recall": 0.5145,
+            "lead_time_seconds": {
+              "mean": 0.775,
+              "median": 0.833,
+              "p95": 0.945
+            },
+            "lead_time_frames": {
+              "mean": 16.7,
+              "median": 19.0
+            },
+            "false_warning_frames": 3223,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.111
+          },
+          "top_features": {}
+        },
+        "random_forest": {
+          "fit_duration_seconds": 7.51,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.5853658536585366,
+            "recall": 0.0165346193592835,
+            "f1": 0.032160804020100506,
+            "roc_auc": 0.731885802623321,
+            "pr_auc": 0.2395468864594881,
+            "confusion_matrix": {
+              "tn": 28996,
+              "fp": 34,
+              "fn": 2855,
+              "tp": 48
+            },
+            "positive_prediction_rate": 0.002567876491403877,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.45,
+            "precision": 0.49572649572649574,
+            "recall": 0.019979331725800895,
+            "f1": 0.038410596026490065,
+            "roc_auc": 0.731885802623321,
+            "pr_auc": 0.2395468864594881,
+            "confusion_matrix": {
+              "tn": 28971,
+              "fp": 59,
+              "fn": 2845,
+              "tp": 58
+            },
+            "positive_prediction_rate": 0.0036639213352957756,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 11,
+            "event_recall": 0.0399,
+            "lead_time_seconds": {
+              "mean": 0.803,
+              "median": 0.882,
+              "p95": 0.938
+            },
+            "lead_time_frames": {
+              "mean": 17.4,
+              "median": 19.0
+            },
+            "false_warning_frames": 34,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0012
+          },
+          "event_eval_tuned": {
+            "threshold": 0.45,
+            "total_events": 276,
+            "detected_events": 16,
+            "event_recall": 0.058,
+            "lead_time_seconds": {
+              "mean": 0.739,
+              "median": 0.877,
+              "p95": 0.937
+            },
+            "lead_time_frames": {
+              "mean": 15.9,
+              "median": 19.0
+            },
+            "false_warning_frames": 59,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.002
+          },
+          "top_features": {
+            "steer_roll_mean_0_5s": 0.14283522153983785,
+            "gForceLateral": 0.12036933336855382,
+            "gforce_lat_max_1s": 0.10927850583473131,
+            "steer": 0.08786476698542245,
+            "speed_roll_mean_1s": 0.061320779262479294,
+            "sector": 0.05779814065599075,
+            "speed": 0.05194389248451976,
+            "speed_roll_mean_0_5s": 0.051200293336137535,
+            "steer_roll_std_1s": 0.04210926771364825,
+            "gear": 0.03745132360560283
+          }
+        },
+        "xgboost": {
+          "fit_duration_seconds": 1.26,
+          "metrics_default": {
+            "threshold": 0.5,
+            "precision": 0.42814667988107036,
+            "recall": 0.14881157423355149,
+            "f1": 0.22085889570552147,
+            "roc_auc": 0.7309510135321544,
+            "pr_auc": 0.2438494770912968,
+            "confusion_matrix": {
+              "tn": 28453,
+              "fp": 577,
+              "fn": 2471,
+              "tp": 432
+            },
+            "positive_prediction_rate": 0.031597407071055024,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "metrics_tuned": {
+            "threshold": 0.59,
+            "precision": 0.4476295479603087,
+            "recall": 0.13985532208060628,
+            "f1": 0.2131233595800525,
+            "roc_auc": 0.7309510135321544,
+            "pr_auc": 0.2438494770912968,
+            "confusion_matrix": {
+              "tn": 28529,
+              "fp": 501,
+              "fn": 2497,
+              "tp": 406
+            },
+            "positive_prediction_rate": 0.028403219240284345,
+            "baseline_prevalence": 0.09090909090909091
+          },
+          "event_eval_default": {
+            "threshold": 0.5,
+            "total_events": 276,
+            "detected_events": 86,
+            "event_recall": 0.3116,
+            "lead_time_seconds": {
+              "mean": 0.729,
+              "median": 0.862,
+              "p95": 0.943
+            },
+            "lead_time_frames": {
+              "mean": 15.7,
+              "median": 19.0
+            },
+            "false_warning_frames": 577,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0199
+          },
+          "event_eval_tuned": {
+            "threshold": 0.59,
+            "total_events": 276,
+            "detected_events": 78,
+            "event_recall": 0.2826,
+            "lead_time_seconds": {
+              "mean": 0.755,
+              "median": 0.868,
+              "p95": 0.943
+            },
+            "lead_time_frames": {
+              "mean": 16.3,
+              "median": 19.0
+            },
+            "false_warning_frames": 501,
+            "total_negative_test_frames": 29030,
+            "false_warning_rate_on_negatives": 0.0173
+          },
+          "top_features": {
+            "steer_roll_mean_0_5s": 0.2514569163322449,
+            "gear": 0.123389333486557,
+            "sector": 0.07486525177955627,
+            "gForceLateral": 0.048587288707494736,
+            "speed_roll_mean_1s": 0.037662703543901443,
+            "throttle_roll_mean_1s": 0.03641951456665993,
+            "speed": 0.0331040658056736,
+            "speed_roll_mean_0_5s": 0.03135574236512184,
+            "brake": 0.030895432457327843,
+            "brake_max_1s": 0.030563000589609146
+          }
+        }
+      }
+    }
+  }
+}
